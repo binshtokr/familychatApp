@@ -1,10 +1,8 @@
-import express from "express";
+const express = require("express");
+const cors = require("cors");
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 
-import cors from "cors";
-
-import { createServer } from "http";
-
-import { Server } from "socket.io";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
