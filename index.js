@@ -3,11 +3,19 @@ const cors = require("cors");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors({ origin: "*" })); // CORS für HTTP-Requests in Express
+app.use(
+  cors({
+    origin: "*", // Du erlaubst alle Ursprünge
+    methods: ["GET", "POST"],
+  })
+); // CORS für HTTP-Requests in Express
+
+app.get("/api/data", (req, res) => {
+  res.send({ msg: "message" });
+});
 /* app.use("/api", routes); */
 
 //Hier wird ein HTTP-Server mit Express erstellt. Der Server wird später von Socket.IO verwendet. : Erzeugt eine neue Instanz des Socket.IO-Servers und verbindet ihn mit dem HTTP-Server.
