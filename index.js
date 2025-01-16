@@ -27,7 +27,6 @@ const io = new Server(server, {
     origin: "https://family-chat-app.netlify.app", // Make sure this matches the actual domain of your frontend
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"], // Optionally allow specific headers
-    credentials: true,  // Optional: If you are dealing with cookies
   },
   transports: ['websocket', 'polling'], // Ensure both transports are supported
 });
