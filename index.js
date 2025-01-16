@@ -24,11 +24,11 @@ const server = createServer(app);
 //Einrichten des WebSocket-Servers (Socket.IO) hier auch cors für websocket-verbindungen über socket.io
 const io = new Server(server, {
   cors: {
-    origin: "https://family-chat-app.netlify.app", // Erlaubt nur WebSocket-Verbindungen von Netlify-Frontend
+    origin: "https://family-chat-app.netlify.app", // Korrekte Origin-URL
     methods: ["GET", "POST"],
   },
+  transports: ['websocket', 'polling'], // Stellen Sie sicher, dass WebSocket als Transportmodus aktiviert ist
 });
-
 // Start listening to events (connection,send_message,etc.)
 
 io.on("connection", (socket) => {
