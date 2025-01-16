@@ -1,15 +1,27 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "index.js",
-        "use": "@vercel/node"
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js", 
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/socket.io/",
+      "dest": "index.js", 
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Connection": "Upgrade",
+        "Upgrade": "websocket"
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "index.js"
-      }
-    ]
+    },
+    {
+      "src": "/api/data",
+      "dest": "index.js" 
+    }
+  ],
+  "env": {
+    "PORT": "3001" 
   }
+}
