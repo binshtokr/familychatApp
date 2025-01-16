@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3001;
 
 app.use(
   cors({
-    origin: "https://family-chat-app.netlify.app", // Erlaubt nur Anfragen von Netlify-Frontend
+    origin: ["https://familychat-app.vercel.app", "https://family-chat-app.netlify.app"],
     methods: ["GET", "POST"],
   })
 ); // CORS für HTTP-Requests in Express
@@ -24,7 +24,8 @@ const server = createServer(app);
 //Einrichten des WebSocket-Servers (Socket.IO) hier auch cors für websocket-verbindungen über socket.io
 const io = new Server(server, {
   cors: {
-    origin: "https://family-chat-app.netlify.app", // Make sure this matches the actual domain of your frontend
+    origin: ["https://familychat-app.vercel.app", "https://family-chat-app.netlify.app"], // Ensure consistent CORS origins
+// Make sure this matches the actual domain of your frontend
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"], // Optionally allow specific headers
   },
