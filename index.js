@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3001;
 
 app.use(
   cors({
-    origin: "https://family-chat-app.netlify.app", // Erlaubt nur Anfragen von Netlify-Frontend
+    origin: "https://familychat-app.vercel.app/", // Erlaubt nur Anfragen von Netlify-Frontend
     methods: ["GET", "POST"],
   })
 ); // CORS für HTTP-Requests in Express
@@ -24,7 +24,7 @@ const server = createServer(app);
 //Einrichten des WebSocket-Servers (Socket.IO) hier auch cors für websocket-verbindungen über socket.io
 const io = new Server(server, {
   cors: {
-    origin: "https://family-chat-app.netlify.app", // Erlaubt nur WebSocket-Verbindungen von Netlify-Frontend
+    origin: "https://familychat-app.vercel.app/", // Erlaubt nur WebSocket-Verbindungen von Netlify-Frontend
     methods: ["GET", "POST"],
   },
 });
@@ -40,9 +40,9 @@ io.on("connection", (socket) => {
     socket.to(msg.room).emit("receive_message", msg.message);
   });
 
-  /*   socket.on("disconnect", (socket) => {
+    socket.on("disconnect", () => {
     console.log("user disconnected", socket.id);
-  }); */
+  });
 
   socket.on("join_room", (room) => {
     socket.join(room);
